@@ -28,6 +28,7 @@ public class DbService {
 
     }
 
+    //wrapper function as used by /add
     private List<String> getQuotesByUsername(@PathVariable("username") String username) {
         return quotesRepository.findByUserName(username)
                 .stream()
@@ -46,5 +47,17 @@ public class DbService {
                 .map(quote -> new Quote(quotes.getUserName(), quote))
                 .forEach(quote -> quotesRepository.save(quote));
         return getQuotesByUsername(quotes.getUserName());
+    }
+
+    @PostMapping("/delete/{username}")
+    public List<String> delete(@PathVariable("username") final String username) {
+
+        List<Quote> quotes = quotesRepository.findByUserName(username);
+
+        for(Quote quote: quotes) {
+            quotesRepository.deleteById(quote.getId());
+        }
+
+        return getQuotesByUsername(username);
     }
 }

@@ -6,9 +6,10 @@ public class Quotes {
     private String userName;
     private List<String> quotes;
 
-    public Quotes() {
+    // Default constructor necessary in a rest API
+    // saving all quotes in this POJO, iterating and saving individual Quote in QuotesRepository(DB)
 
-    }
+    public Quotes() { }
 
     public Quotes(String userName, List<String> quotes) {
         this.userName = userName;
