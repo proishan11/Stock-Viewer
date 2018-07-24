@@ -5,6 +5,7 @@
 /classes/
 *.iml
 *.cmd
+*.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting
